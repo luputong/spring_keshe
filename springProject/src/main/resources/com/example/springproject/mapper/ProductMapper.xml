@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springproject.mapper.ProductMapper">
+    <!--动态sql-->
+    <select id="allList" resultType="com.example.springproject.pojo.Product">
+        select * from product
+        <where>
+            <if test="category!=null">
+                category=#{category}
+            </if>
+        </where>
+    </select>
+
+    <select id="search" resultType="com.example.springproject.pojo.Product">
+        select * from product
+        <where>
+            <if test="category!=null">
+                category like CONCAT('%',#{category},'%')
+            </if>
+            <if test="type!=null">
+                and type like CONCAT('%',#{type},'%')
+            </if>
+        </where>
+    </select>
+</mapper>
