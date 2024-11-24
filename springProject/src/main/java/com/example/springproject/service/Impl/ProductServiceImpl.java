@@ -39,8 +39,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> search(String category, String type) {
-        List<Product> lp = productMapper.search(category, type);
+    public List<Product> search(String category, String name) {
+        List<Product> lp = productMapper.search(category, name);
         return lp;
     }
 

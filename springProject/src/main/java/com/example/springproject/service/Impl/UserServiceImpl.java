@@ -45,5 +45,10 @@ public class UserServiceImpl implements UserService {
         userMapper.updatePic(picUrl,id);
     }
 
+    @Override
+    public void updateMoney(Integer id, Double money) {
+        userMapper.updateMoney(money,id);
+    }
+
 
 }

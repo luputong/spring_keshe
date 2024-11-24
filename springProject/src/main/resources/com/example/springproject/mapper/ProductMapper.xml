@@ -17,10 +17,10 @@
         select * from product
         <where>
             <if test="category!=null">
-                category like CONCAT('%',#{category},'%')
+                category=#{category}
             </if>
             <if test="type!=null">
-                and type like CONCAT('%',#{type},'%')
+                and name like CONCAT('%',#{name},'%')
             </if>
         </where>
     </select>

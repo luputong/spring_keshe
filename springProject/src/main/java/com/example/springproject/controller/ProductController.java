@@ -41,8 +41,8 @@ public class ProductController {
     }
     //模糊搜索产品
     @GetMapping("/search")
-    public Result<List<Product>> search(@RequestParam("category") String category, @RequestParam("type") String type) {
-        List<Product> lp = productService.search(category, type);
+    public Result<List<Product>> search(@RequestParam("category") String category, @RequestParam("name") String name) {
+        List<Product> lp = productService.search(category, name);
         return Result.success(lp);
     }
 

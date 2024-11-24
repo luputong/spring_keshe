@@ -85,5 +85,15 @@ public class UserController {
         log.info(lp.toString());
         return Result.success(lp);
     }
+
+    @GetMapping("/addMoney")
+    public Result addMoney(@RequestParam("money") Integer money){
+        Map<String,Object> map = ThreadLocalUtil.get();
+        String username = (String) map.get("username");
+        User user = userService.findByUserName(username);
+        user.setMoney(user.getMoney()+money);
+        userService.updateMoney(user.getId(),user.getMoney());
+        return Result.success();
+    }
 }
 

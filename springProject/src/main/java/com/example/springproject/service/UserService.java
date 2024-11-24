@@ -10,4 +10,6 @@ public interface UserService {
     void update(User user);
 
     void updatePic(String picUrl);
+
+    void updateMoney(Integer id, Double money);
 }
