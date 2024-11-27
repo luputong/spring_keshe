@@ -6,12 +6,13 @@ import com.example.springproject.service.UserService;
 import com.example.springproject.utils.ThreadLocalUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/fruits")
@@ -22,7 +23,8 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     //获取所有产品列表
     @GetMapping
@@ -75,8 +77,9 @@ public class ProductController {
     @GetMapping("/calculate")
     public Result calculate(@RequestParam("total") Integer total) {
         HashMap map = ThreadLocalUtil.get();
-        log.info(String.valueOf(total));
-        if (userService.findByUserName(String.valueOf(map.get("username"))).getMoney() <total) {
+        String s = String.valueOf(map.get("username"));
+        Double money = userService.findByUserName(s).getMoney();
+        if (money <total) {
             return Result.error("余额不足");
         }
         productService.deleteCart(total);

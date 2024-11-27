@@ -4,7 +4,18 @@ spring:
     url: jdbc:mysql://localhost:3306/springproject
     username: root
     password: root
-
+  rabbitmq:
+    username: rabbitmq
+    password: FPYwcan8dDjXFjAC
+    host: 139.9.54.116
+    port: 8504
+    virtual-host: /
+  data:
+    redis:
+      host: localhost
+      database: 0
+      port: 6379
+      password: 123456
 mybatis:
   type-aliases-package: com.example.springproject.pojo
   configuration:
